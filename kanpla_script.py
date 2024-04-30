@@ -41,7 +41,7 @@ async def get_menu_for_today(date_to_look_for):
         print(output)
 
 def main():
-    asyncio.run(get_menu_for_today())
+    asyncio.run(get_menu_for_today(datetime.today()))
 
 if __name__=="__main__":
     main()
