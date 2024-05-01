@@ -3,7 +3,7 @@ Get the menu for the day, but filter out anything that isn't food (Like milk, ju
 
 
 ## Slack message
-The Slack message is sent through (Shoutrrr)[https://containrrr.dev/shoutrrr] 
+The Slack message is sent through [Shoutrrr](https://containrrr.dev/shoutrrr)
 It simply takes a "Shoutrrr" url, which looks like this `service://<O-Auth-Token>@<ChannelID>`
 
 ```
