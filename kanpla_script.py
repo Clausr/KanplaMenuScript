@@ -66,7 +66,7 @@ def get_product_name_emoji(string):
     elif "rød" in string_lower:
         return "🔴"
     elif "håndmadder" in string_lower:
-        return ""
+        return "🍞"
     elif "salat" in string_lower:
         emoji = "🥗"
         if "protein" in string_lower:
@@ -75,14 +75,12 @@ def get_product_name_emoji(string):
             emoji = "🐰" + emoji
         return emoji
     elif "sandwich" in string_lower:
-        emoji = "🥪"
         if "kød" in string_lower:
-            emoji = "🥩" + emoji
+            return "🥩🥪" 
         elif "vegetar" in string_lower:
-            emoji = "🐰" + emoji
-        return emoji
+            return "🐰🥖"
     else:
-        return "🧊"
+        return "❓"
 
 def main():
     asyncio.run(get_menu_for_today(datetime.today()))
