@@ -32,13 +32,50 @@ async def get_menu_for_today(date_to_look_for):
         output += '*' + date_to_look_for.strftime('%A %d. %B') + '*\n\n'
         
         for filtered_menu in menus_from_filtered_products:
-            productName = filtered_menu["productName"]
+            productName = get_product_name_with_emojis(filtered_menu["productName"], filtered_menu["name"])
             menuDescription = filtered_menu["description"].strip('\n')
             menuName = filtered_menu["name"].strip('\n')
 
-            output += '*' + productName + ' - ' + menuName + '*\n'
+            output += '*' + productName + '*\n'
             output += menuDescription + '\n\n'
         print(output)
+
+def get_product_name_with_emojis(product_name, menu_name):
+    product_name_emoji = get_product_name_emoji(product_name)
+    name_without_parentheses = menu_name.split('(')[0].strip()
+    if name_without_parentheses == "":
+        name_without_parentheses = product_name
+    return f"{product_name_emoji} {name_without_parentheses}"
+
+def get_product_name_emoji(string):
+    string_lower = string.lower()
+
+    if "lilla" in string_lower:
+        return "🟣"
+    elif "grøn" in string_lower:
+        return "🟢"
+    elif "orange" in string_lower:
+        return "🟠"
+    elif "rød" in string_lower:
+        return "🔴"
+    elif "håndmadder" in string_lower:
+        return ""
+    elif "salat" in string_lower:
+        emoji = "🥗"
+        if "protein" in string_lower:
+            emoji = "💪" + emoji
+        elif "vegetar" in string_lower:
+            emoji = "🐰" + emoji
+        return emoji
+    elif "sandwich" in string_lower:
+        emoji = "🥪"
+        if "kød" in string_lower:
+            emoji = "🥩" + emoji
+        elif "vegetar" in string_lower:
+            emoji = "🐰" + emoji
+        return emoji
+    else:
+        return "🧊"
 
 def main():
     asyncio.run(get_menu_for_today(datetime.today()))
