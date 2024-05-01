@@ -34,9 +34,15 @@ async def get_menu_for_today(date_to_look_for):
         for filtered_menu in menus_from_filtered_products:
             productName = get_product_name_with_emojis(filtered_menu["productName"], filtered_menu["name"])
             menuDescription = filtered_menu["description"].strip('\n')
-            menuName = filtered_menu["name"].strip('\n')
+            menu_name_without_parentheses = filtered_menu["name"].split('(')[0].strip()
 
-            output += '*' + productName + '*\n'
+            name = ''
+            if productName.endswith(menu_name_without_parentheses):
+                name = productName
+            else:
+                name = productName + ' - ' + menu_name_without_parentheses
+
+            output += '*' + name + '*\n'
             output += menuDescription + '\n\n'
         print(output)
 
@@ -45,6 +51,7 @@ def get_product_name_with_emojis(product_name, menu_name):
     name_without_parentheses = menu_name.split('(')[0].strip()
     if name_without_parentheses == "":
         name_without_parentheses = product_name
+
     return f"{product_name_emoji} {name_without_parentheses}"
 
 def get_product_name_emoji(string):
