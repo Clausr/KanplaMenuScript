@@ -1,5 +1,5 @@
 # KanplaMenuScript
-Get the menu for the day, but filter out anything that isn't food (Like milk, juice and stuff like that)
+Get the menu for the day, but filter out anything that isn't food (Like milk, juice and stuff like that).
 
 
 ## Slack message
